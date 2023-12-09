@@ -86,8 +86,6 @@ async function main() {
       res.status(400).send({ message: err });
     }
   });
-
-  app.use((_req, res) => res.status(404).send("404 Not Found"));
 }
 
 export default app;
