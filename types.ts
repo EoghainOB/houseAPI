@@ -1,11 +1,10 @@
 import { Date } from "mongoose";
 
 export interface houseTypes {
-  _id: Number;
   id: Number;
   image: String;
   price: Number;
-  rooms: houseTypes;
+  rooms: roomsTypes;
   size: Number;
   description: String;
   location: locationTypes;
@@ -15,7 +14,7 @@ export interface houseTypes {
   madeByMe: Boolean;
 }
 
-export interface houseTypes {
+export interface roomsTypes {
   bedrooms: Number;
   bathrooms: Number;
 }

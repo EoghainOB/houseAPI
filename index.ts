@@ -17,7 +17,6 @@ async function main() {
   );
 
   const housesSchema = new Schema<houseTypes>({
-    _id: Number,
     id: Number,
     image: String,
     price: Number,
@@ -54,9 +53,11 @@ async function main() {
 
   app.post("/houses", async (req: Request, res: Response) => {
     try {
+      console.log(req.body);
       const newHouse = new Houses({ ...req.body });
       await newHouse.save();
-      res.status(200).json(newHouse);
+      console.log(newHouse);
+      res.json(newHouse);
     } catch (err) {
       res.status(400).send({ message: err });
     }
@@ -70,9 +71,9 @@ async function main() {
         { ...req.body },
         { new: true }
       );
-      res.status(201).json(updateHouse);
+      res.json(updateHouse);
     } catch (err) {
-      res.status(400);
+      res.status(400).json({ message: err.message });
     }
   });
 
