@@ -17,10 +17,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
-  "engines": {
-    "node": "16.16.0",
-    "npm": "8.11.0"
-  },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
