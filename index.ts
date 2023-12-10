@@ -55,7 +55,6 @@ async function main() {
 
   app.post("/houses", async (req: Request, res: Response) => {
     try {
-      console.log(req.body);
       const newHouse = new Houses({ ...req.body });
       await newHouse.save();
       console.log(newHouse);
