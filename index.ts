@@ -1,11 +1,11 @@
-import express, { Request, Response } from "express";
-import { Application } from "express";
+const express = require("express");
+import { Request, Response } from "express";
 import { Schema, model, connect } from "mongoose";
 import { houseTypes } from "./types";
-import cors from "cors";
+const cors = require("cors");
 require("dotenv").config();
 
-const app: Application = express();
+const app = express();
 app.use(express.json());
 app.use(cors());
 
