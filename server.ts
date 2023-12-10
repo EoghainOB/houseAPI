@@ -1,4 +1,4 @@
-import app from "./dist/index";
+const app = require("./index").default;
 
 const port = 8080;
 
