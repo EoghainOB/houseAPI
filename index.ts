@@ -1,8 +1,4 @@
 const express = require("express");
-import {
-  Request as ExpressRequest,
-  Response as ExpressResponse,
-} from "express";
 import { Schema, model, connect } from "mongoose";
 import { houseTypes } from "./types";
 const cors = require("cors");
@@ -37,7 +33,7 @@ async function main() {
 
   const Houses = model("houses", housesSchema);
 
-  app.get("/houses", async (_req: ExpressRequest, res: ExpressResponse) => {
+  app.get("/houses", async (_req: any, res: any) => {
     try {
       const allHouses = await Houses.find();
       res.status(200).json(allHouses);
@@ -46,7 +42,7 @@ async function main() {
     }
   });
 
-  app.get("/houses/:id", async (req: ExpressRequest, res: ExpressResponse) => {
+  app.get("/houses/:id", async (req: any, res: any) => {
     try {
       const { id } = req.params;
       const singleHouse = await Houses.find({ id: id });
@@ -56,7 +52,7 @@ async function main() {
     }
   });
 
-  app.post("/houses", async (req: ExpressRequest, res: ExpressResponse) => {
+  app.post("/houses", async (req: any, res: any) => {
     try {
       const newHouse = new Houses({ ...req.body });
       await newHouse.save();
@@ -67,20 +63,17 @@ async function main() {
     }
   });
 
-  app.delete(
-    "/houses/:id",
-    async (req: ExpressRequest, res: ExpressResponse) => {
-      try {
-        const { id } = req.params;
-        const removeHouse = await Houses.findOneAndDelete({ id: id });
-        res.json(removeHouse);
-      } catch (err) {
-        res.status(400).send({ message: err });
-      }
+  app.delete("/houses/:id", async (req: any, res: any) => {
+    try {
+      const { id } = req.params;
+      const removeHouse = await Houses.findOneAndDelete({ id: id });
+      res.json(removeHouse);
+    } catch (err) {
+      res.status(400).send({ message: err });
     }
-  );
+  });
 
-  app.put("/houses/:id", async (req: ExpressRequest, res: ExpressResponse) => {
+  app.put("/houses/:id", async (req: any, res: any) => {
     try {
       const { id } = req.params;
       const updateHouse = await Houses.findOneAndUpdate(
