@@ -1,4 +1,5 @@
 const express = require("express");
+import { Request, Response } from "express";
 import { Schema, model, connect } from "mongoose";
 import { houseTypes } from "./types";
 const cors = require("cors");
@@ -33,7 +34,7 @@ async function main() {
 
   const Houses = model("houses", housesSchema);
 
-  app.get("/houses", async (_req: any, res: any) => {
+  app.get("/houses", async (_req: Request, res: Response) => {
     try {
       const allHouses = await Houses.find();
       res.status(200).json(allHouses);
@@ -42,7 +43,7 @@ async function main() {
     }
   });
 
-  app.get("/houses/:id", async (req: any, res: any) => {
+  app.get("/houses/:id", async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const singleHouse = await Houses.find({ id: id });
@@ -52,7 +53,7 @@ async function main() {
     }
   });
 
-  app.post("/houses", async (req: any, res: any) => {
+  app.post("/houses", async (req: Request, res: Response) => {
     try {
       const newHouse = new Houses({ ...req.body });
       await newHouse.save();
@@ -63,7 +64,7 @@ async function main() {
     }
   });
 
-  app.delete("/houses/:id", async (req: any, res: any) => {
+  app.delete("/houses/:id", async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const removeHouse = await Houses.findOneAndDelete({ id: id });
@@ -73,7 +74,7 @@ async function main() {
     }
   });
 
-  app.put("/houses/:id", async (req: any, res: any) => {
+  app.put("/houses/:id", async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const updateHouse = await Houses.findOneAndUpdate(
