@@ -1,4 +1,4 @@
-import app from "./dist/index";
+import app from "./index";
 
 const port = process.env.PORT || 8080;
 
