@@ -63,6 +63,16 @@ async function main() {
     }
   });
 
+  app.delete("/houses/:id", async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const removeHouse = await Houses.findOneAndDelete({ id: id });
+      res.json(removeHouse);
+    } catch (err) {
+      res.status(400).send({ message: err });
+    }
+  });
+
   app.put("/houses/:id", async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -74,16 +84,6 @@ async function main() {
       res.json(updateHouse);
     } catch (err) {
       res.status(400).json({ message: err.message });
-    }
-  });
-
-  app.delete("/houses/:id", async (req: Request, res: Response) => {
-    try {
-      const { id } = req.params;
-      const removeHouse = await Houses.findOneAndDelete({ id: id });
-      res.json(removeHouse);
-    } catch (err) {
-      res.status(400).send({ message: err });
     }
   });
 }
