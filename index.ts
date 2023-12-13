@@ -56,7 +56,6 @@ async function main() {
     try {
       const newHouse = new Houses({ ...req.body });
       await newHouse.save();
-      console.log(newHouse);
       res.json(newHouse);
     } catch (err) {
       res.status(400).send({ message: err });
